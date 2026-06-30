@@ -53,3 +53,43 @@ const dfs = (graphCanvas, start) => {
 }
 
 dfs(graph, 'A')
+
+
+
+
+const getPath = (parent,target) => {
+    const pathArr = []
+    pathArr.push(target)
+    let curr = parent[target]
+    while(curr){
+        pathArr.push(curr)
+        curr = parent[curr]
+    }
+
+    
+    const path = pathArr.reverse().join(" -> ")
+
+    console.log(path)
+
+
+}
+
+const bfsWithPath = (graphCanvas, start) => {
+  const queue = [start]
+  const visited = new Set([start])
+  const parent = {}  // parent[node] = the node that discovered it
+
+  while (queue.length > 0) {
+    const current = queue.shift()
+    for (const neighbour of graph[current]) {
+      if (visited.has(neighbour.to)) continue
+      visited.add(neighbour.to)
+      parent[neighbour.to] = current  // record who found this node
+      queue.push(neighbour.to)
+    }
+  }
+
+  return parent
+}
+
+getPath(bfsWithPath(graph, "A"), "E")
