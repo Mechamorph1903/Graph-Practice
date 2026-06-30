@@ -35,7 +35,7 @@ const dfs = (graphCanvas, start) => {
 
     stack.push(start)
     visited.add(start)
-    console.log(`This is the order of visitation for Breadth-First Search`)
+    console.log(`This is the order of visitation for Depth-First Search`)
     while(stack.length > 0){
         const current =  stack.pop() //store what vertex we are currently visiting, notice we pop here as opposed to shifting, as we use a stack in dfs
         console.log('Visiting:', current)  // log when actually processing
