@@ -23,7 +23,33 @@ const bfs = (graphCanvas, start) => {
         }
         queue.shift() //remove the node we just worked with from front of queue
     }
-    console.log(visited)// print the nodes we visited in order
+    console.log(`This is the order of visitation for Breadth-First Search`, visited)// print the nodes we visited in order
 }
 
 bfs(graph, 'A')
+
+const dfs = (graphCanvas, start) => {
+     //this makes us go through 
+    const stack = [] //working stack, LIFO
+    const visited = new Set() //visited
+
+    stack.push(start)
+    visited.add(start)
+
+    while(stack.length > 0){
+        const current =  stack.pop() //store what vertex we are currently visiting, notice we pop here as opposed to shifting, as we use a stack in dfs
+        console.log('Visiting:', current)  // log when actually processing
+        for(const neighbour of graphCanvas[current]){
+            if(visited.has(neighbour.to)){
+                continue
+            }
+            stack.push(neighbour.to)
+            visited.add(neighbour.to)
+        }
+        //you aklso notice that we cant log the visited set as it wont show the real order of visitation, because visited pushes every touched vertex rather than
+        //show in order of what vertex was worked on in order
+
+    }
+}
+
+dfs(graph, 'A')
